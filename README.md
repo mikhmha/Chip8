@@ -1,5 +1,6 @@
 # Chip8
-A Chip8 interpreter. 
+A Chip8 interpreter written in C++. I did this project due to an interest in emulator development. 
+This implementation uses OpenGL and GLFW to handle rendering and input. 
 
 **Requires:**
 - A compiler that supports C++ 11 or greater
