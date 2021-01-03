@@ -16,7 +16,7 @@ constexpr int WINDOW_HEIGHT = 600;
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
-void setupRenderQuad(unsigned int &vao, unsigned int &vbo, unsigned int &ebo, unsigned int &texture_id);
+void setupRenderQuad();
 void draw(GLFWwindow *window, const Chip8 &c);
 
 
@@ -58,8 +58,8 @@ int main()
 	//******************//
 
 
-	unsigned int VAO, VBO, EBO, TEXID;
-	setupRenderQuad(VAO, VBO, EBO, TEXID);
+
+	setupRenderQuad();
 
 
 	// deltaTime
@@ -101,7 +101,7 @@ int main()
 
 
 
-void setupRenderQuad(unsigned int& vao, unsigned int& vbo, unsigned int& ebo, unsigned int& texture_id)
+void setupRenderQuad()
 {
 	constexpr float vertices[] 
 	{
@@ -118,14 +118,16 @@ void setupRenderQuad(unsigned int& vao, unsigned int& vbo, unsigned int& ebo, un
 		1, 2, 3   // second Triangle
 	};
 
-	glGenVertexArrays(1, &vao);
-	glGenBuffers(1, &vbo);
-	glGenBuffers(1, &ebo);
+	unsigned int VAO, VBO, EBO, TEXID;
 
-	glBindVertexArray(vao);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glGenVertexArrays(1, &VAO);
+	glGenBuffers(1, &VBO);
+	glGenBuffers(1, &EBO);
+
+	glBindVertexArray(VAO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 
@@ -136,8 +138,8 @@ void setupRenderQuad(unsigned int& vao, unsigned int& vbo, unsigned int& ebo, un
 
 
 
-	glGenTextures(1, &texture_id);
-	glBindTexture(GL_TEXTURE_2D, texture_id);
+	glGenTextures(1, &TEXID);
+	glBindTexture(GL_TEXTURE_2D, TEXID);
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
