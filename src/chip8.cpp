@@ -72,8 +72,8 @@ void Chip8::run()
 
 void Chip8::SEL_0(uint8_t addr)
 {
-	if (addr == 0xE0) { display.fill(0); return; }
-	if (addr == 0xEE) { pc = stack[--sp]; return; }
+	if (addr == 0xE0) { display.fill(0); }
+	else if (addr == 0xEE) { pc = stack[--sp]; }
 }
 
 void Chip8::SEL_E(uint8_t X, uint8_t addr)
@@ -90,16 +90,16 @@ void Chip8::SEL_E(uint8_t X, uint8_t addr)
 
 void Chip8::SEL_F0(uint8_t X, uint8_t addr)
 {
-	if (addr == 0x07) { V[X] = delay_timer;  return; };
-	if (addr == 0x0A) { _FX0A(X); };
+	if (addr == 0x07) { V[X] = delay_timer;  }
+	else if (addr == 0x0A) { _FX0A(X); };
 
 }
 
 void Chip8::SEL_F1(uint8_t X, uint8_t addr)
 {
-	if (addr == 0x15) { delay_timer = V[X]; return; };
-	if (addr == 0x18) { sound_timer = V[X];  return; };
-	if (addr == 0x1E) { I += V[X];  return; };
+	if (addr == 0x15) { delay_timer = V[X]; }
+	else if (addr == 0x18) { sound_timer = V[X];  }
+	else if (addr == 0x1E) { I += V[X];  };
 
 }
 
