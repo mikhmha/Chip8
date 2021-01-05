@@ -148,7 +148,7 @@ void setupRenderQuad()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
 
-	auto id = get_shaderID("shaders/quad.vs", "shaders/quad.fs");
+	auto id = shader::get_shaderID("shaders/quad.vs", "shaders/quad.fs");
 	glUseProgram(id);
 
 }
